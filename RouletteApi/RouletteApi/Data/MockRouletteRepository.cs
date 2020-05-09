@@ -8,24 +8,23 @@ namespace RouletteApi.Data
 {
     public class MockRouletteRepository : IRouletteRepository
     {
+        private readonly RouletteApiContext _context;
+        public MockRouletteRepository(RouletteApiContext context)
+        {
+            _context = context;
+        }
+
+        // Return the list of all Roulettes
         public IEnumerable<Roulette> GetRoulettes()
         {
-            var roulettes = new List<Roulette>
-            {
-                new Roulette { Id = 0, Status = true, CreatedAt= DateTime.Now },
-                new Roulette { Id = 1, Status = false, CreatedAt = DateTime.Now },
-                new Roulette { Id = 2, Status = true, CreatedAt = DateTime.Now },
-                new Roulette { Id = 3, Status = false, CreatedAt = DateTime.Now }
-            };
-
+            var roulettes = _context.Roulette.ToList();
             return roulettes;
         }
 
+        // Return a specific Roulette by id
         public Roulette GetRouletteById(int id)
         {
-
-            return new Roulette { Id = 0, Status = true, CreatedAt= DateTime.Now };
-
+            return _context.Roulette.FirstOrDefault(p => p.Id == id);
         }
 
     }

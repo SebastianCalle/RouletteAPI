@@ -12,6 +12,7 @@ namespace RouletteApi.Controllers
     [ApiController]
     public class RouletteController : ControllerBase
     {
+        // Dependency Injection 
         private readonly IRouletteRepository _repository;
         public RouletteController(IRouletteRepository repository)
         {
