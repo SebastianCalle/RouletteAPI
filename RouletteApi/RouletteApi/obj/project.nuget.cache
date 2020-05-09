@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hHUqbKRYD6m6StOa8MRwlbkSlcdKPwQEv5XY1tJu04H+wc+1V2zDKt8RbLElhjdhS5rqsYuypoOMb4Togl2Edg==",
+  "dgSpecHash": "Oj7312+J0k4z+96BrYG+MoG5HTlx/MDeU0bbdEjIIMJGxc0FbQ/ZrfNAGN15pvXvltlNuVclBH8GTjlE/tucXg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jusem\\Documents\\API\\RouletteAPI\\RouletteApi\\RouletteApi\\RouletteApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jusem\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\jusem\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\jusem\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\jusem\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\jusem\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",

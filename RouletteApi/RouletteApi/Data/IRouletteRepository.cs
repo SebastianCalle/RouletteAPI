@@ -8,7 +8,9 @@ namespace RouletteApi.Data
 {
     public interface IRouletteRepository
     {
+        bool SaveChanges();
         IEnumerable<Roulette> GetRoulettes();
         Roulette GetRouletteById(int i);
+        void CreateRoulette(Roulette rlt);
     }
 }

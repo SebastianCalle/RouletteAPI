@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RouletteApi.Data;
+using RouletteApi.Dtos;
 using RouletteApi.Models;
 
 namespace RouletteApi.Controllers
@@ -14,26 +16,39 @@ namespace RouletteApi.Controllers
     {
         // Dependency Injection 
         private readonly IRouletteRepository _repository;
-        public RouletteController(IRouletteRepository repository)
+        private readonly IMapper _mapper;
+
+        public RouletteController(IRouletteRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         //GET api/roulette
         [HttpGet]
-        public ActionResult<IEnumerable<Roulette>> GetRoulettes()
+        public ActionResult<IEnumerable<RouletteReadDto>> GetRoulettes()
         {
             var roulettes = _repository.GetRoulettes();
+            if (roulettes != null)
+            {
 
-            return Ok(roulettes);
+                return Ok(_mapper.Map<IEnumerable<RouletteReadDto>>(roulettes));
+            }
+            return NotFound();
+
         }
 
         //GET api/roulette/{id}
         [HttpGet("{id}")]
-        public ActionResult<Roulette> GetRouletteById(int id)
+        public ActionResult<RouletteReadDto> GetRouletteById(int id)
         {
             var roulette = _repository.GetRouletteById(id);
+            if(roulette != null)
+            {
+                return Ok(_mapper.Map<RouletteReadDto>(roulette));
+            }
+            return NotFound();
 
-            return Ok(roulette);
+
         }
     }
 }
