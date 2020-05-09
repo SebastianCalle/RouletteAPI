@@ -12,7 +12,11 @@ namespace RouletteApi.Controllers
     [ApiController]
     public class RouletteController : ControllerBase
     {
-        private readonly MockRouletteRepository _repository = new MockRouletteRepository();
+        private readonly IRouletteRepository _repository;
+        public RouletteController(IRouletteRepository repository)
+        {
+            _repository = repository;
+        }
         //GET api/roulette
         [HttpGet]
         public ActionResult<IEnumerable<Roulette>> GetRoulettes()
