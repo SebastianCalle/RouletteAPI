@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RouletteApi.Data;
 using RouletteApi.Dtos;
 using RouletteApi.Models;
+using System;
+using System.Collections.Generic;
 
 namespace RouletteApi.Controllers
 {
@@ -38,17 +36,27 @@ namespace RouletteApi.Controllers
         }
 
         //GET api/roulette/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetRouletteById")]
         public ActionResult<RouletteReadDto> GetRouletteById(int id)
         {
             var roulette = _repository.GetRouletteById(id);
-            if(roulette != null)
+            if (roulette != null)
             {
                 return Ok(_mapper.Map<RouletteReadDto>(roulette));
             }
             return NotFound();
+        }
 
+        [HttpPost]
+        public ActionResult<RouletteReadDto> CreateRoulette(RouletteCreateDto rouletteCreateDto)
+        {
+            var rouletteModel = _mapper.Map<Roulette>(rouletteCreateDto);
+            _repository.CreateRoulette(rouletteModel);
+            _repository.SaveChanges();
 
+            var rouletteReadDto = _mapper.Map<RouletteReadDto>(rouletteModel);
+
+            return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
     }
 }

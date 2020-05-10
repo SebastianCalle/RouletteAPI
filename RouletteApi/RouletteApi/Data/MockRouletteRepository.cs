@@ -27,5 +27,20 @@ namespace RouletteApi.Data
             return _context.Roulette.FirstOrDefault(p => p.Id == id);
         }
 
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
+
+        public void CreateRoulette(Roulette rlt)
+        {
+            if (rlt == null)
+            {
+                throw new ArgumentNullException(nameof(rlt));
+            }
+
+            _context.Roulette.Add(rlt);
+
+        }
     }
 }

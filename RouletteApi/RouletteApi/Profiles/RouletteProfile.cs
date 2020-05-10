@@ -12,7 +12,9 @@ namespace RouletteApi.Profiles
     {
         public RouletteProfile()
         {
+            // Source -> Destination
             CreateMap<Roulette, RouletteReadDto>();
+            CreateMap<RouletteCreateDto, Roulette>();
         }
     }
 }
