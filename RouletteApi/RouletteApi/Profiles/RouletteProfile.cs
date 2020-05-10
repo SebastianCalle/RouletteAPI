@@ -15,6 +15,8 @@ namespace RouletteApi.Profiles
             // Source -> Destination
             CreateMap<Roulette, RouletteReadDto>();
             CreateMap<RouletteCreateDto, Roulette>();
+            CreateMap<RouletteUpdateDto, Roulette>();
+            CreateMap<Roulette, RouletteUpdateDto>();
         }
     }
 }

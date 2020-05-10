@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using RouletteApi.Data;
 using RouletteApi.Dtos;
@@ -47,6 +48,7 @@ namespace RouletteApi.Controllers
             return NotFound();
         }
 
+        // POST api/roulette
         [HttpPost]
         public ActionResult<RouletteReadDto> CreateRoulette(RouletteCreateDto rouletteCreateDto)
         {
@@ -58,5 +60,54 @@ namespace RouletteApi.Controllers
 
             return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
+
+        // PUT  api/roulette/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateRoulette(int id, RouletteUpdateDto rouletteUpdateDto)
+        {
+            var rouletteModel = _repository.GetRouletteById(id);
+            if (rouletteModel == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(rouletteUpdateDto, rouletteModel);
+
+            _repository.UpdateRoulette(rouletteModel);
+
+            _repository.SaveChanges();
+
+            return Ok();
+        }
+
+        // PATCH api/roulette/{id}
+        [HttpPatch("{id}")]
+        public ActionResult StatusRouletteUpdate(int id, JsonPatchDocument<RouletteUpdateDto> patchDoc)
+        {
+            var rouletteModel = _repository.GetRouletteById(id);
+            if (rouletteModel == null)
+            {
+                return NotFound();
+            }
+
+            var rouletteToPatch = _mapper.Map<RouletteUpdateDto>(rouletteModel);
+            patchDoc.ApplyTo(rouletteToPatch, ModelState);
+            if (!TryValidateModel(rouletteToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+
+
+            _mapper.Map(rouletteToPatch, rouletteModel);
+
+            _repository.UpdateRoulette(rouletteModel);
+
+            _repository.SaveChanges();
+
+            return Ok();
+        }
+
+
     }
 }

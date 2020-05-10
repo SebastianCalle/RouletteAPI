@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RouletteApi.Dtos
 {
-    public class RouletteCreateDto
+    public class RouletteUpdateDto
     {
         public int Id { get; set; }
         public bool Status { get; set; }

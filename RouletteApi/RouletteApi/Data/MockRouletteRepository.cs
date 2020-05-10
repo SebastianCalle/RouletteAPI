@@ -42,5 +42,10 @@ namespace RouletteApi.Data
             _context.Roulette.Add(rlt);
 
         }
+
+        public void UpdateRoulette(Roulette rlt)
+        {
+            // Nothing
+        }
     }
 }
