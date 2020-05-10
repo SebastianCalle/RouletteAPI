@@ -61,25 +61,6 @@ namespace RouletteApi.Controllers
             return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
 
-        // PUT  api/roulette/{id}
-        [HttpPut("{id}")]
-        public ActionResult UpdateRoulette(int id, RouletteUpdateDto rouletteUpdateDto)
-        {
-            var rouletteModel = _repository.GetRouletteById(id);
-            if (rouletteModel == null)
-            {
-                return NotFound();
-            }
-
-            _mapper.Map(rouletteUpdateDto, rouletteModel);
-
-            _repository.UpdateRoulette(rouletteModel);
-
-            _repository.SaveChanges();
-
-            return Ok();
-        }
-
         // PATCH api/roulette/{id}
         [HttpPatch("{id}")]
         public ActionResult StatusRouletteUpdate(int id, JsonPatchDocument<RouletteUpdateDto> patchDoc)
