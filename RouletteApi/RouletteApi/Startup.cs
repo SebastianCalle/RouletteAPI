@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using RouletteApi.Data;
+using RouletteApi.Validations;
 
 namespace RouletteApi
 {
@@ -38,6 +40,7 @@ namespace RouletteApi
 
             // Solve dependency injection
             services.AddScoped<IRouletteRepository, MockRouletteRepository>();
+            services.AddScoped<IBetRepository, MockBetRepository>();
 
             // Mapper Models to DTO's
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -46,6 +49,9 @@ namespace RouletteApi
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
+            // Validation with fluetnValidation
+            services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BetCreateValidation>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

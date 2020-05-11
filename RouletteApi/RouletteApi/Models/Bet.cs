@@ -9,8 +9,9 @@ namespace RouletteApi.Models
         public string Color { get; set; }
         public int? Number { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? RouletteId { get; set; }
+        public int RouletteId { get; set; }
+        public int Amount { get; set; }
 
-        public virtual Roulette Roulette { get; set; }
+        public Roulette Roulette { get; set; }
     }
 }

@@ -61,6 +61,7 @@ namespace RouletteApi.Controllers
             return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
 
+
         // PATCH api/roulette/{id}
         [HttpPatch("{id}")]
         public ActionResult StatusRouletteUpdate(int id, JsonPatchDocument<RouletteUpdateDto> patchDoc)
