@@ -30,9 +30,26 @@ namespace RouletteApi.Data
 
             return bets;
         }
+
+        public object GetRouletteById(int id)
+        {
+            return _context.Roulette.FirstOrDefault(p => p.Id == id);
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdateStatusRoulette(int id)
+        {
+            var roulette = _context.Roulette.FirstOrDefault(p => p.Id == id);
+            if (roulette != null)
+            {
+                roulette.Status = false;
+                _context.Roulette.Update(roulette);
+                _context.SaveChanges();
+            }
         }
     }
 }

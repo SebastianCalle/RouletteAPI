@@ -11,5 +11,7 @@ namespace RouletteApi.Data
         bool SaveChanges();
         IEnumerable<Bet> GetBets(int id);
         void CreateBet(Bet bt);
+        object GetRouletteById(int id);
+        void UpdateStatusRoulette(int id);
     }
 }

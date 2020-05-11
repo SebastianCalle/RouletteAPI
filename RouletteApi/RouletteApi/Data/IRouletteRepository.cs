@@ -14,5 +14,6 @@ namespace RouletteApi.Data
         Roulette GetRouletteById(int Id);
         void CreateRoulette(Roulette rlt);
         void UpdateRoulette(Roulette rlt);
+
     }
 }
