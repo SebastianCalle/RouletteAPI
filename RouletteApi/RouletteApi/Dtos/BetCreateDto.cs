@@ -1,5 +1,6 @@
 ﻿namespace RouletteApi.Dtos
 {
+    // Dto for bet when it's created
     public class BetCreateDto
     {
         public int RouletteId { get; set; }

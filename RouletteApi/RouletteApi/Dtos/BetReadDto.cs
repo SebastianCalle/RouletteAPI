@@ -2,6 +2,7 @@
 
 namespace RouletteApi.Dtos
 {
+    // Dto for bet when it's read
     public class BetReadDto
     {
         public int BetId { get; set; }

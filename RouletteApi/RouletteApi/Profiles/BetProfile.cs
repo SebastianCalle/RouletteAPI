@@ -8,6 +8,7 @@ namespace RouletteApi.Profiles
     {
         public BetProfile()
         {
+            // Source -> Destination
             CreateMap<Bet, BetReadDto>();
             CreateMap<BetCreateDto, Bet>();
         }

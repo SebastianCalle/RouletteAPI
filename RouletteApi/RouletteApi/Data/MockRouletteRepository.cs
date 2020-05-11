@@ -26,11 +26,13 @@ namespace RouletteApi.Data
             return _context.Roulette.FirstOrDefault(p => p.Id == id);
         }
 
+        // Return true if save changes or false if not
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
         }
 
+        // Craete roulette and add to database
         public void CreateRoulette(Roulette rlt)
         {
             if (rlt == null)
@@ -42,6 +44,7 @@ namespace RouletteApi.Data
 
         }
 
+        // Update Roulette
         public void UpdateRoulette(Roulette rlt)
         {
             // Nothing
