@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using RouletteApi.Data;
 using RouletteApi.Dtos;
 using RouletteApi.Models;
+using System.Collections.Generic;
 
 namespace RouletteApi.Controllers
 {
@@ -23,14 +17,13 @@ namespace RouletteApi.Controllers
         public BetController(IBetRepository repository, IMapper mapper)
         {
             _repository = repository;
-            //_context = context;
             _mapper = mapper;
         }
 
+        // GET /api/bet/{id}
         [HttpGet("{id}", Name = "GetBets")]
         public ActionResult<IEnumerable<BetReadDto>> GetBets(int id)
         {
-            //var bets = _context.Bet.Where(x => x.RouletteId.Equals(id));
             var bets = _repository.GetBets(id);
             if (bets != null)
             {
@@ -39,13 +32,13 @@ namespace RouletteApi.Controllers
             return NotFound();
         }
 
-
         // POST: api/bet
         [HttpPost]
         public ActionResult<BetCreateDto> PostBet([FromBody] BetCreateDto betCreateDto)
         {
             var rouletteModel = _repository.GetRouletteById(betCreateDto.RouletteId);
-            if (rouletteModel == null)
+            var status = _repository.StatusRoulette(betCreateDto.RouletteId);
+            if (rouletteModel == null || status == false)
             {
                 return NotFound();
             }
@@ -60,6 +53,7 @@ namespace RouletteApi.Controllers
             return BadRequest();
         }
 
+        // GET api/close/{id}
         [HttpGet("close/{id}", Name = "CloseBet")]
         public ActionResult<IEnumerable<BetReadDto>> CloseBet(int id)
         {
@@ -71,7 +65,5 @@ namespace RouletteApi.Controllers
             }
             return NotFound();
         }
-
-
     }
 }

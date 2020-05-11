@@ -1,8 +1,5 @@
 ﻿using RouletteApi.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RouletteApi.Data
 {
@@ -13,5 +10,6 @@ namespace RouletteApi.Data
         void CreateBet(Bet bt);
         object GetRouletteById(int id);
         void UpdateStatusRoulette(int id);
+        bool StatusRoulette(int id);
     }
 }
