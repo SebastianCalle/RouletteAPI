@@ -123,25 +123,6 @@ The REST API to Roulete is described below.
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 74
-
-    [{"id":1,"name":"Foo","status":"new"},{"id":2,"name":"Bar","status":null}]
-
-## Change a Thing's state
-
-### Request
-
-`PUT /thing/:id/status/changed`
-
-    curl -i -H 'Accept: application/json' -X PUT http://localhost:7000/thing/1/status/changed
-
-### Response
-
     content-length: 181 
  	content-type: application/json; charset=utf-8 
  	date: Mon, 11 May 2020 17:11:53 GMT 
