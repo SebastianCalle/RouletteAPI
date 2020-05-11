@@ -20,7 +20,11 @@ namespace RouletteApi.Controllers
             _mapper = mapper;
         }
 
-        // GET /api/bet/{id}
+        /// <summary>
+        /// Show the gets created with the id of roulette
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Return the list of bets</returns>
         [HttpGet("{id}", Name = "GetBets")]
         public ActionResult<IEnumerable<BetReadDto>> GetBets(int id)
         {
@@ -32,7 +36,11 @@ namespace RouletteApi.Controllers
             return NotFound();
         }
 
-        // POST: api/bet
+        /// <summary>
+        /// Create a bet if roulette is open
+        /// </summary>
+        /// <param name="betCreateDto"></param>
+        /// <returns>Return the status of response </returns>
         [HttpPost]
         public ActionResult<BetCreateDto> PostBet([FromBody] BetCreateDto betCreateDto)
         {
@@ -48,12 +56,16 @@ namespace RouletteApi.Controllers
                 _repository.CreateBet(betModel);
                 _repository.SaveChanges();
 
-                return NoContent();
+                return Ok();
             }
             return BadRequest();
         }
 
-        // GET api/close/{id}
+        /// <summary>
+        /// Show all bets for id of roulette
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Return the list of bets</returns>
         [HttpGet("close/{id}", Name = "CloseBet")]
         public ActionResult<IEnumerable<BetReadDto>> CloseBet(int id)
         {

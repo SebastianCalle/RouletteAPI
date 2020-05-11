@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RouletteApi</name>
+    </assembly>
+    <members>
+        <member name="M:RouletteApi.Controllers.BetController.GetBets(System.Int32)">
+            <summary>
+            Show the gets created with the id of roulette
+            </summary>
+            <param name="id"></param>
+            <returns>Return the list of bets</returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.BetController.PostBet(RouletteApi.Dtos.BetCreateDto)">
+            <summary>
+            Create a bet if roulette is open
+            </summary>
+            <param name="betCreateDto"></param>
+            <returns>Return the status of response </returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.BetController.CloseBet(System.Int32)">
+            <summary>
+            Show all bets for id of roulette
+            </summary>
+            <param name="id"></param>
+            <returns>Return the list of bets</returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.RouletteController.GetRoulettes">
+            <summary>
+            Show the all roulettes creteds with his states
+            </summary>
+            <param name=""></param>
+            <returns>Return the list of roulettes</returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.RouletteController.GetRouletteById(System.Int32)">
+            <summary>
+            Show an specific roulette by id
+            </summary>
+            <param name="id"></param>
+            <returns>Return the roulettes</returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.RouletteController.CreateRoulette(RouletteApi.Dtos.RouletteCreateDto)">
+            <summary>
+            Create a new roulette
+            </summary>
+            <param name="rouletteCreateDto"></param>
+            <returns>Return the dates of roulette created</returns>
+        </member>
+        <member name="M:RouletteApi.Controllers.RouletteController.StatusRouletteUpdate(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{RouletteApi.Dtos.RouletteUpdateDto})">
+            <summary>
+            Update status of a roulette
+            </summary>
+            <param name="id"></param>
+            <param name="patchDoc"></param>
+            <returns>Return the status of response</returns>
+        </member>
+    </members>
+</doc>

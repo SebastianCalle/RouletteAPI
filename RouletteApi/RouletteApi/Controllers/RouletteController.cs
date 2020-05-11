@@ -21,7 +21,11 @@ namespace RouletteApi.Controllers
             _mapper = mapper;
         }
 
-        //GET api/roulette
+        /// <summary>
+        /// Show the all roulettes creteds with his states
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns>Return the list of roulettes</returns>
         [HttpGet]
         public ActionResult<IEnumerable<RouletteReadDto>> GetRoulettes()
         {
@@ -33,7 +37,11 @@ namespace RouletteApi.Controllers
             return NotFound();
         }
 
-        //GET api/roulette/{id}
+        /// <summary>
+        /// Show an specific roulette by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Return the roulettes</returns>
         [HttpGet("{id}", Name = "GetRouletteById")]
         public ActionResult<RouletteReadDto> GetRouletteById(int id)
         {
@@ -45,7 +53,11 @@ namespace RouletteApi.Controllers
             return NotFound();
         }
 
-        // POST api/roulette
+        /// <summary>
+        /// Create a new roulette
+        /// </summary>
+        /// <param name="rouletteCreateDto"></param>
+        /// <returns>Return the dates of roulette created</returns>
         [HttpPost]
         public ActionResult<RouletteReadDto> CreateRoulette(RouletteCreateDto rouletteCreateDto)
         {
@@ -58,7 +70,12 @@ namespace RouletteApi.Controllers
             return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
 
-        // PATCH api/roulette/{id}
+        /// <summary>
+        /// Update status of a roulette
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns>Return the status of response</returns>
         [HttpPatch("{id}")]
         public ActionResult StatusRouletteUpdate(int id, JsonPatchDocument<RouletteUpdateDto> patchDoc)
         {
