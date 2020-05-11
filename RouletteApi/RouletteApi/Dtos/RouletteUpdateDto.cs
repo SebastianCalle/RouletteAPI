@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RouletteApi.Dtos
+﻿namespace RouletteApi.Dtos
 {
+    // Dto for roulette when it's updated
     public class RouletteUpdateDto
     {
         public int Id { get; set; }

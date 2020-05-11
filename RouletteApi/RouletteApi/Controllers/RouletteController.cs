@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using RouletteApi.Data;
 using RouletteApi.Dtos;
 using RouletteApi.Models;
-using System;
 using System.Collections.Generic;
 
 namespace RouletteApi.Controllers
@@ -13,7 +12,6 @@ namespace RouletteApi.Controllers
     [ApiController]
     public class RouletteController : ControllerBase
     {
-        // Dependency Injection 
         private readonly IRouletteRepository _repository;
         private readonly IMapper _mapper;
 
@@ -22,6 +20,7 @@ namespace RouletteApi.Controllers
             _repository = repository;
             _mapper = mapper;
         }
+
         //GET api/roulette
         [HttpGet]
         public ActionResult<IEnumerable<RouletteReadDto>> GetRoulettes()
@@ -29,11 +28,9 @@ namespace RouletteApi.Controllers
             var roulettes = _repository.GetRoulettes();
             if (roulettes != null)
             {
-
                 return Ok(_mapper.Map<IEnumerable<RouletteReadDto>>(roulettes));
             }
             return NotFound();
-
         }
 
         //GET api/roulette/{id}
@@ -61,7 +58,6 @@ namespace RouletteApi.Controllers
             return CreatedAtRoute(nameof(GetRouletteById), new { rouletteReadDto.Id }, rouletteReadDto);
         }
 
-
         // PATCH api/roulette/{id}
         [HttpPatch("{id}")]
         public ActionResult StatusRouletteUpdate(int id, JsonPatchDocument<RouletteUpdateDto> patchDoc)
@@ -79,17 +75,11 @@ namespace RouletteApi.Controllers
                 return ValidationProblem(ModelState);
             }
 
-
-
             _mapper.Map(rouletteToPatch, rouletteModel);
-
             _repository.UpdateRoulette(rouletteModel);
-
             _repository.SaveChanges();
 
             return Ok();
         }
-
-
     }
 }

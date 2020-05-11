@@ -1,9 +1,5 @@
-﻿using RouletteApi.Dtos;
-using RouletteApi.Models;
-using System;
+﻿using RouletteApi.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RouletteApi.Data
 {
@@ -14,6 +10,5 @@ namespace RouletteApi.Data
         Roulette GetRouletteById(int Id);
         void CreateRoulette(Roulette rlt);
         void UpdateRoulette(Roulette rlt);
-
     }
 }
